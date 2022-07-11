@@ -9,7 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button login = findViewById(R.id.btn_Login);
         Button register = findViewById(R.id.btn_Register);
         TextView forgetPassword = findViewById(R.id.txtForgetPassword);
-
-
+        mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
