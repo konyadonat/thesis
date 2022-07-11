@@ -24,18 +24,23 @@ public class User {
 
         public UserBuilder setEmail(String email){
             //TODO Validate email
+            //TODO Check for null, empty + email format
             user.email = email;
             return this;
         }
 
         public UserBuilder setPassword(String password) {
             //TODO Validate password
+            //TODO Check for null, empty, length, must contain at least 1 number then hash it
+            //TODO Need to check how to hash in Java
             user.password = password;
             return this;
         }
 
         public UserBuilder setName(String name) throws NameTooShortException {
-            if (name.length() < 5) {
+            //TODO Name validation
+            //TODO Check for length, null, empty, and to not contain any number
+            if (name.length() < 3) {
                 throw new NameTooShortException("A megadott név túl rövid!");
             }
             user.name = name;

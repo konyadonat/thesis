@@ -31,9 +31,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    //TODO FINISH VALIDATION
                     if (password != passwordAgain) {
                         throw new PasswordAgainNotTheSameException("A jelszó és a jelszó újra nem egyezik!");
                     }
+                    //TODO Check if the email is correct
+                    //TODO Make a new editText with emailAgain
+                    //TODO Password validation
+
+                    //If one/more of the data is incorrect, it throws exception
+                    //TODO In User.java make validation in the builder
                     User temp = new User.UserBuilder()
                             .setEmail(email.getText().toString())
                             .setPassword(password.getText().toString())
@@ -49,10 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
