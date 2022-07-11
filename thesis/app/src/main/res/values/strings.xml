@@ -5,4 +5,14 @@
     <string name="jelszo">Jelszó</string>
     <string name="bejelentkez_s">Bejelentkezés</string>
     <string name="regiszr_ci">Regiszráció</string>
+    <string name="regisztr_ci">Regisztráció</string>
+    <string name="regisztr_cio">Regisztráció</string>
+    <string name="vissza">Vissza</string>
+    <string name="jelsz_jra">Jelszó újra</string>
+    <string name="n_v">Név</string>
+    <string name="regisztr_cioo">Regisztráció</string>
+    <string name="felhaszn_l_i_felt_telek">Felhasználói feltételek</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
