@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     //TODO FINISH VALIDATION
-                    if (password != passwordAgain) {
+                    if (!(password.getText().toString().equals(passwordAgain.getText().toString()))) {
                         throw new PasswordAgainNotTheSameException("A jelszó és a jelszó újra nem egyezik!");
                     }
                     //TODO Check if the email is correct
