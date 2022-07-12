@@ -6,10 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.konyadonat.thesis.user.Exception.EmailEmptyException;
+import com.konyadonat.thesis.user.Exception.EmailInvalidException;
+import com.konyadonat.thesis.user.Exception.EmailNullException;
+import com.konyadonat.thesis.user.Exception.NameEmptyException;
+import com.konyadonat.thesis.user.Exception.NameNullException;
 import com.konyadonat.thesis.user.Exception.NameTooShortException;
 import com.konyadonat.thesis.user.Exception.PasswordAgainNotTheSameException;
+import com.konyadonat.thesis.user.Exception.PasswordEmptyException;
+import com.konyadonat.thesis.user.Exception.PasswordNullException;
+import com.konyadonat.thesis.user.Exception.PasswordTooShortException;
+import com.konyadonat.thesis.user.Exception.TermsOfUseNotAcceptedException;
 import com.konyadonat.thesis.user.User;
 
 import java.util.Objects;
@@ -27,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText name = findViewById(R.id.editTextTextPersonName);
         Button register = findViewById(R.id.btn_registerInReigsterActivity);
         Button back = findViewById(R.id.btn_backToLoginInRegister);
+        Switch termsOfUse = findViewById(R.id.switch1);
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +59,16 @@ public class RegisterActivity extends AppCompatActivity {
                             .setPassword(password.getText().toString())
                             .setName(name.getText().toString())
                             .getUser();
-                } catch (NameTooShortException e) {
-                    Toast.makeText(RegisterActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    if (!termsOfUse.isChecked()) {
+                        throw new TermsOfUseNotAcceptedException("Fogadja el a felhasználói feltételeket!");
+                    }
+                } catch (NameTooShortException | NameEmptyException  | NameNullException |
+                        EmailEmptyException | EmailInvalidException | EmailNullException | PasswordEmptyException |
+                        PasswordNullException | PasswordTooShortException | TermsOfUseNotAcceptedException e) {
+                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
-                }
-                catch (Exception e){
-                    Toast.makeText(RegisterActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e){
+                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
