@@ -12,13 +12,15 @@ import com.konyadonat.thesis.user.Exception.NameTooShortException;
 import com.konyadonat.thesis.user.Exception.PasswordAgainNotTheSameException;
 import com.konyadonat.thesis.user.User;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        Objects.requireNonNull(getSupportActionBar()).hide();
         EditText email = findViewById(R.id.editTextTextEmailAddress2);
         EditText password = findViewById(R.id.editTextTextPassword2);
         EditText passwordAgain = findViewById(R.id.editTextTextPassword3);

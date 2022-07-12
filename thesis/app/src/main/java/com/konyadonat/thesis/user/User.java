@@ -1,5 +1,8 @@
 package com.konyadonat.thesis.user;
 
+import com.konyadonat.thesis.user.Exception.EmailEmptyException;
+import com.konyadonat.thesis.user.Exception.EmailInvalidException;
+import com.konyadonat.thesis.user.Exception.EmailNullException;
 import com.konyadonat.thesis.user.Exception.NameTooShortException;
 
 public class User {
@@ -19,12 +22,28 @@ public class User {
         return password;
     }
 
+    public static boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
     public static class UserBuilder{
         User user = new User();
 
-        public UserBuilder setEmail(String email){
-            //TODO Validate email
+        public UserBuilder setEmail(String email) throws EmailInvalidException, EmailEmptyException, EmailNullException {
             //TODO Check for null, empty + email format
+            if (email == "") {
+                throw new EmailEmptyException("Írjon be egy e-mail címet!");
+            }
+            if (email == null) {
+                throw new EmailNullException("A megadott email null típusú!");
+            }
+            //TODO Validate email
+            if(!isValidEmailAddress(email)) {
+                throw new EmailInvalidException("A megadott e-mail cím formátuma nem megfelelő!");
+            }
             user.email = email;
             return this;
         }
